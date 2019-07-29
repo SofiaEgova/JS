@@ -9,8 +9,10 @@ function createField(){
   document.body.appendChild(field);
   fieldUser = document.createElement('div');
   fieldUser.className = 'fieldUser';
+  fieldUser.innerHTML='<i>Игрок';
   let fieldComp = fieldUser.cloneNode(true);
-  fieldUser.className = 'fieldComp';
+  fieldComp.className = 'fieldComp';
+  fieldComp.innerHTML='<i>Компьютер';
   field.appendChild(fieldUser);
   field.appendChild(fieldComp);
 }
