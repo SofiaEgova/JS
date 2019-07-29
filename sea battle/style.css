@@ -1,0 +1,27 @@
+.field {
+  width: 1200px;
+	height: 600px;
+	position: relative;
+	margin: 0 auto;
+  background-color: #819FF7;
+}
+
+.fieldUser {
+  width: 430px;
+	height: 430px;
+  display: block;
+  float: left;
+  margin-left: 50px;
+  margin-top: 50px;
+  background: url('playerField.png') no-repeat;
+}
+
+.fieldComp {
+  width: 430px;
+	height: 430px;
+  display: block;
+  float: right;
+  margin-right: 50px;
+  margin-top: 50px;
+  background: url('playerField.png') no-repeat;
+}
