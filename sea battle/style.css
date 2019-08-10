@@ -7,23 +7,25 @@
   }
 
   .fieldUser {
+    background-color: #ffffff;
     width: 430px;
     height: 430px;
     display: block;
     float: left;
     margin-left: 50px;
     margin-top: 50px;
-    background: url('playerField.png') no-repeat;
+    /* background: url('playerField.png') no-repeat; */
   }
 
   .fieldComp {
+    background-color: #ffffff;
     width: 430px;
     height: 430px;
-    display: block;
+    /* display: block; */
     float: right;
     margin-right: 50px;
     margin-top: 50px;
-    background: url('playerField.png') no-repeat;
+    /* background: url('playerField.png') no-repeat; */
   }
 
   i{
@@ -31,5 +33,18 @@
     font-family: monospace;
     font-weight: bold;
     font-size: 200%;
-    color:#819FF7;
+    color:#239FF7;
+  }
+
+.table{
+  left: 50px;
+  top: 50px;
+}
+
+
+  .cell{
+    width: 30px;
+    height: 30px;
+    border: 2px solid #239FF7;
+    position: absolute;
   }
