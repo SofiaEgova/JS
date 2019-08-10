@@ -5,9 +5,6 @@ let emptyColor = '#FFFFFF';
 let missColor = '#239FF7';
 let shipColor = '#696969';
 let hitColor ='#FF0000';
-let isGameStarted;
-let userSips=[];
-let compShips=[];
 
 function createField(){
   let field = document.createElement('div');
@@ -33,6 +30,7 @@ function createField(){
       td.style.top=100+j*cellSizey+'px';
       td.setAttribute('data-y',i);
       td.setAttribute('data-x',j);
+      td.setAttribute('data-user',"user");
       td.className = 'cell';
       tr.appendChild(td);
     }
@@ -49,29 +47,55 @@ function createField(){
       td.style.top=100+j*cellSizey+'px';
       td.setAttribute('data-y',i);
       td.setAttribute('data-x',j);
-      td.setAttribute('data-type','empty');
-      td.className = 'cell';
+      td.setAttribute('data-user',"comp");
+      td.className = 'cellComp';
       tr.appendChild(td);
     }
   }
 }
 
 function createUserField(){
-  let cells = [...document.querySelectorAll('td')];
+  let cells = [...document.querySelectorAll('td.cell')];
   cells.forEach( (item)=>{
                 item.addEventListener('click', (e)=>{
                   let x = e.target.getAttribute('data-x');
                           let y = e.target.getAttribute('data-y');
                           console.log(x + y);
                           e.target.style.backgroundColor = shipColor;
-
                 });
   });
+}
+
+function getRandom(n) {
+	return Math.floor(Math.random() * (n + 1));
+}
+
+function createCompField(){
+  let cells = [...document.querySelectorAll('td.cellComp')];
 
 }
 
+function createShip(cells, deck){
+  let upright = getRandom(1);
+  if(upright==0){
+    x = getRandom(9);
+		y = getRandom(10 - deck);
+  } else{
+    x = getRandom(10 - deck);
+		y = getRandom(9);
+  }
+  var res = checkLocation(x,y,upright,deck);
+  if(!res) return createShip(cells, deck);
+  //TD иначе рисуем
+}
+
+function checkLocation(x,y,upright,deck){
+//TD проверка на касание с другим кораблем
+  return true;
+}
+
 function check(){
-  
+//TD проверка расставления пользователя (по кнопке)
   game();
 }
 
@@ -81,3 +105,4 @@ function game(){
 
 createField();
 createUserField();
+createCompField();
