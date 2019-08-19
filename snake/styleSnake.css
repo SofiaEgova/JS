@@ -1,0 +1,42 @@
+.field {
+  width: 700px;
+  height: 700px;
+  vertical-align: middle;
+  position: relative;
+  margin: 0 auto;
+  background-color: #9ACD32;
+}
+
+.table{
+  left: 100px;
+  top: 100px;
+}
+
+.cell{
+  width: 50px;
+  height: 50px;
+  background-size: cover;
+  border: 2px solid #008000;
+  position: absolute;
+}
+
+.snake{
+  position: absolute;
+  background-size: cover;
+  background-color: #808000;
+}
+
+.apple{
+  position: absolute;
+  background-size: cover;
+  background-color: #FF0000;
+}
+
+i{
+  margin-left: 70px;
+  margin-top: 30px;
+  font-family: monospace;
+  font-weight: bold;
+  font-size: 300%;
+  color:#FF6347;
+}
