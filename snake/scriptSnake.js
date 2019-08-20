@@ -1,8 +1,9 @@
 let n = 10;
 let score=2;
 let timer;
+let field;
 let snake;
-let nav;
+let nav='toRight';
 let newApple;
 
 function getRandom(n) {
@@ -10,10 +11,10 @@ function getRandom(n) {
 }
 
 function createField(){
-  let field = document.createElement('div');
+  field = document.createElement('div');
   document.body.appendChild(field);
   field.classList.add('field');
-  field.innerHTML='<i>Счет:"' + score + '"';
+  field.innerHTML=`<i>Счет: ${score}`;
 
   for(let i=0;i<n;i++){
     for(let j=0;j<n;j++){
@@ -37,17 +38,13 @@ function createField(){
 }
 
 function createSnake(){
-  // debugger;
   let x = getRandom(n-4);
   let y = getRandom(n-1);
-  //переделать как в последней лекции
   snake = [document.querySelector('[x = "' + (x+2) + '" ][y = "' + y + '" ]'), document.querySelector('[x = "' + (x+1) + '" ][y = "' + y + '" ]'),
   document.querySelector('[x = "' + x + '" ][y = "' + y + '" ]')];
   for(let i=0;i<snake.length;i++){
     snake[i].classList.add('snake');
   }
-
-  nav = 'toRight';
 
   window.addEventListener('keydown', function (e) {
     if(e.keyCode == 37 && nav != 'toRight'){
@@ -69,21 +66,21 @@ function createApple(){
   let x = getRandom(n-1);
   let y = getRandom(n-1);
   let apple = [document.querySelector('[x = "' + x + '" ][y = "' + y + '" ]')];
-  // если яблоко создалось на позиции змейки - пресоздать
-  // while(apple.classList.contains('snake')){
-  //   let x = getRandom(n-1);
-  //   let y = getRandom(n-1);
-  //   apple = [document.querySelector('[x = "' + x + '" ][y = "' + y + '" ]')];
-  // }
   apple[0].classList.add('apple');
   return apple;
 }
-// добавить проверку на равность координат головы с другими
+
 function step(){
   // debugger;
   let snakePos = [snake[0].getAttribute('x'), snake[0].getAttribute('y')];
   snake[snake.length-1].classList.remove('snake');
   snake.pop();
+  for(let i=1;i<snake.length;i++){
+    if(snake[i].getAttribute('x')==snakePos[0]&&snake[i].getAttribute('y')==snakePos[1]){
+      alert(`Игра окончена! Ваш результат: ${score+1}`);
+      location.reload(true);
+    }
+  }
   switch(nav){
     case 'toRight':
     if(snakePos[0]<n-1){
@@ -91,7 +88,7 @@ function step(){
       snake[0].classList.add('snake');
     }
     else{
-      alert('Игра окончена! Ваш результат:"' + (score+1) + '"');
+      alert(`Игра окончена! Ваш результат: ${score+1}`);
       location.reload(true);
     }
     break;
@@ -101,7 +98,7 @@ function step(){
       snake[0].classList.add('snake');
     }
     else{
-      alert('Игра окончена! Ваш результат:"' + (score+1) + '"');
+      alert(`Игра окончена! Ваш результат: ${score+1}`);
       location.reload(true);
     }
     break;
@@ -111,7 +108,7 @@ function step(){
       snake[0].classList.add('snake');
     }
     else{
-      alert('Игра окончена! Ваш результат:"' + (score+1) + '"');
+      alert(`Игра окончена! Ваш результат: ${score+1}`);
       location.reload(true);
     }
     break;
@@ -121,15 +118,15 @@ function step(){
       snake[0].classList.add('snake');
     }
     else{
-      alert('Игра окончена! Ваш результат:"' + (score+1) + '"');
+      alert(`Игра окончена! Ваш результат: ${score+1}`);
       location.reload(true);
     }
     break;
   }
   if(snake[0].getAttribute('x') == newApple[0].getAttribute('x') && snake[0].getAttribute('y')==newApple[0].getAttribute('y')){
     newApple[0].classList.remove('apple');
-    let x = snake[score - 1].getAttribute('x');
-    let y = snake[score - 1].getAttribute('y');
+    let x = snake[score].getAttribute('x');
+    let y = snake[score].getAttribute('y');
     snake.push(document.querySelector('[x = "' + x + '"][y = "' + y + '"]'));
     newApple = createApple();
     score++;
